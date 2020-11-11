@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 10, 2020 at 08:43 AM
+-- Generation Time: Nov 11, 2020 at 08:26 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -30,11 +30,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `job` (
   `id` int(11) NOT NULL,
-  `comp_name` int(11) NOT NULL,
-  `job_title` int(11) NOT NULL,
-  `job_loc` int(11) NOT NULL,
+  `jobid` int(20) NOT NULL,
+  `comp_name` varchar(100) NOT NULL,
+  `job_title` varchar(30) NOT NULL,
+  `job_loc` varchar(30) NOT NULL,
   `salary` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `job`
+--
+
+INSERT INTO `job` (`id`, `jobid`, `comp_name`, `job_title`, `job_loc`, `salary`) VALUES
+(2, 1, 'FiveMart', 'Frontend Developer', 'Banani', 20000);
 
 -- --------------------------------------------------------
 
@@ -68,6 +76,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `type`, `emp_name`, `comp_name
 -- Indexes for table `job`
 --
 ALTER TABLE `job`
+  ADD PRIMARY KEY (`jobid`),
   ADD KEY `id` (`id`);
 
 --
@@ -79,6 +88,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `job`
+--
+ALTER TABLE `job`
+  MODIFY `jobid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
