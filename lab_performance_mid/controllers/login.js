@@ -13,17 +13,32 @@ router.post('/', (req, res)=>{
 		password: req.body.password
 	};
 
-	userModel.validate(user, function(status){
-		if(status){
+	userModel.validate(user, function(results){
+		if(results!=""){
 			res.cookie('uname', req.body.username); 
 			
 			req.session.username=user.username;
-			req.session.password=user.password;
+			req.session.password=user.password; 
+
+			req.session.userid=results[0].id;
+			res.redirect('/home');
+
+		}else{
+			res.redirect('/login');
+		}
+
+
+		/* if(status){
+			res.cookie('uname', req.body.username); 
+			
+			req.session.username=user.username;
+			req.session.password=user.password; 
+			
 			
 			res.redirect('/home');
 		}else{
 			res.redirect('/login');
-		}
+		} */
 	});
 }); 
 

@@ -18,14 +18,20 @@ router.get('/', (req, res)=>{
 	};
 
 	userModel.getSingleUserData(user, function(results){
-		//res.json(results);
+		//res.json(results);  for parsing ajax object ?
+
 		var username = results[0].username;
 		var id = results[0].id;
 		var type = results[0].type;
 
-
-		res.render('home/index', {username: username, id: id, type: type});
-		console.log(results);
+		if(type=="employer"){
+			res.render('home/empIndex', {username: username, id: id, type: type});
+		}else if(type=="admin"){
+			res.render('home/adminIndex', {username: username, id: id, type: type});
+		}else{
+			console.log("Couldn't specify what type of User.");
+		}
+		
 		
 	});
 });
