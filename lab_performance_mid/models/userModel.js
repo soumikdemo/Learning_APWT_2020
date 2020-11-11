@@ -4,19 +4,38 @@ module.exports= {
 	validate: function(user, callback){
 		var sql = "select * from user where username='"+user.username+"' and password='"+user.password+"'";
 		db.getResults(sql, function(results){
-			if(results.length >0 ){
+			callback(results);
+
+			/* if(results.length >0 ){
 				callback(true);
 			}else{
 				callback(false);
-			}
+			} */
 		});
 	},
+	
 	getSingleUserData: function(user, callback){
 		var sql = "select * from user where username='"+user.username+"' and password='"+user.password+"'";
 		db.getResults(sql, function(results){
 			callback(results);
 		});
 	},
+
+	getAllJoblistById: function(employerId, callback){
+		var sql = "select * from job where id='"+employerId+"'";
+		db.getResults(sql, function(results){
+			callback(results);
+		});
+	},
+
+
+
+
+
+
+
+
+
 	getById: function(id, callback){
 
 	},
